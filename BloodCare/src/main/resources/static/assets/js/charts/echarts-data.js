@@ -189,9 +189,10 @@ $(function() {
 
                 
         var weatherIcons = {
-            'Sunny': '././assets/img/weather/sunny_128.png',
-            'Cloudy': '././assets/img/weather/cloudy_128.png',
-            'Showers': '././assets/img/weather/showers_128.png',
+            // 'young_age': '././assets/img/weather/young_age.png',
+            // 'more_young': '././assets/img/weather/more_young.png',
+            // 'age_55': '././assets/img/weather/age_55.png',
+            // 'old': '././assets/img/weather/old.png',
         };
 
         var seriesLabel = {
@@ -210,7 +211,7 @@ $(function() {
                 }
             },
             legend: {
-                data: ['City Alpha', 'City Beta', 'City Gamma']
+                data: ['Donor', 'Receiver']
             },
             grid: {
                 left: 100
@@ -225,7 +226,7 @@ $(function() {
             },
             xAxis: {
                 type: 'value',
-                name: 'Days',
+                name: 'number of quantity',
                 axisLabel: {
                     formatter: '{value}'
                 }
@@ -233,10 +234,12 @@ $(function() {
             yAxis: {
                 type: 'category',
                 inverse: true,
-                data: ['Sunny', 'Cloudy', 'Showers'],
+                data: ['young_age', 'more_young', 'age_55','old'], // Used internally but not shown
                 axisLabel: {
-                    formatter: function (value) {
-                        return '{' + value + '| }\n{value|' + value + '}';
+                    formatter: function (value, index) {
+                        // Map the custom names to the index
+                        const names = ['18-30', '30-50', '50-65', '65+'];
+                        return names[index]; // Show custom names instead
                     },
                     margin: 20,
                     rich: {
@@ -244,35 +247,43 @@ $(function() {
                             lineHeight: 30,
                             align: 'center'
                         },
-                        Sunny: {
+                        young_age: {
                             height: 40,
                             align: 'center',
                             backgroundColor: {
-                                image: weatherIcons.Sunny
+                                image: weatherIcons.young_age
                             }
                         },
-                        Cloudy: {
+                        more_young: {
                             height: 40,
                             align: 'center',
                             backgroundColor: {
-                                image: weatherIcons.Cloudy
+                                image: weatherIcons.more_young
                             }
                         },
-                        Showers: {
+                        age_55: {
                             height: 40,
                             align: 'center',
                             backgroundColor: {
-                                image: weatherIcons.Showers
+                                image: weatherIcons.age_55
+                            }
+                        },
+                        old: {
+                            height: 40,
+                            align: 'center',
+                            backgroundColor: {
+                                image: weatherIcons.old
                             }
                         }
                     }
                 }
             },
+            
             series: [
                 {
-                    name: 'City Alpha',
+                    name: 'Donor',
                     type: 'bar',
-                    data: [165, 170, 30],
+                    data: [165, 170, 30, 65],
                     label: seriesLabel,
                     markPoint: {
                         symbolSize: 1,
@@ -317,23 +328,18 @@ $(function() {
                         }
                         },
                         data: [
-                            {type: 'max', name: 'max days: '},
-                            {type: 'min', name: 'min days: '}
+                            // {type: 'max', name: 'max: '},
+                            // {type: 'min', name: 'min: '}
                         ]
                     }
                 },
                 {
-                    name: 'City Beta',
+                    name: 'Receiver',
                     type: 'bar',
                     label: seriesLabel,
-                    data: [150, 105, 110]
+                    data: [150, 105, 110,98]
                 },
-                {
-                    name: 'City Gamma',
-                    type: 'bar',
-                    label: seriesLabel,
-                    data: [220, 82, 63]
-                }
+                
             ]
         };
 

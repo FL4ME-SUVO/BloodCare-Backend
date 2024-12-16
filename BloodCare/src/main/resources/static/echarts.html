@@ -215,8 +215,8 @@
                     </div>
                     <!--Image Avatar-->
 
-                    <!--Sidebar Navigation Menu-->
-                    <div class="sidebar-menu-container">
+                     <!--Sidebar Navigation Menu-->
+                     <div class="sidebar-menu-container">
                         <ul class="sidebar-menu mt-4 mb-4">
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('dashboard'); return false" class=""><i
@@ -227,23 +227,11 @@
                                 <ul class="children" id="dashboard">
                                     <li class="child"><a href="admin.html" class="ml-4"><i
                                                 class="fa fa-angle-right mr-2"></i> Over View</a></li>
+                                    <li class="child"><a href="index2.html" class="ml-4"><i
+                                                class="fa fa-angle-right mr-2"></i> Analytics</a></li>
                                 </ul>
                             </li>
-                            <li class="parent">
-                                <a href="#" onclick="toggle_menu('charts'); return false" class=""><i class="fa fa-pie-chart mr-3"></i>
-                                    <span class="none">Analytics <i class="fa fa-angle-down pull-right align-bottom"></i></span>
-                                </a>
-                                <ul class="children" id="charts">
-                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chart JS</a></li>
-                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chartist JS</a></li>
-                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Echarts JS</a></li>
-                                    <li class="child"><a href="flot.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Flot JS</a></li>
-                                    <li class="child"><a href="morris.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Morris JS</a></li>
-                                    <li class="child"><a href="nvd3.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NVD3 JS</a></li>
-                                    <li class="child"><a href="sparkline.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Sparkline JS</a></li>
-                                </ul>
                             </li>
-
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('tables'); return false" class=""><i
                                         class="fa fa-pencil-square mr-3"></i>
@@ -287,74 +275,16 @@
 
             <!--Content right-->
             <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
-                <h5 class="mb-0" ><strong>Echarts</strong></h5>
-                <span class="text-secondary">Charts <i class="fa fa-angle-right"></i> Chartist js</span>
+                <h5 class="mb-0" ><strong>Age type of Donor and Receiver</strong></h5>
+                <!-- <span class="text-secondary">Charts <i class="fa fa-angle-right"></i> Chartist js</span> -->
                 
-                <div class="row mt-3">
-                    <div class="col-sm-12">
-                        <!--Stacked Area Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container  bg-white shadow-sm border">
-                            <h6>Stacked Area Chart</h6>
-
-                            <div id="areaChartStackedEcharts"  style="height: 350px;"></div>
-                        </div>
-                        <!--/Stacked Area Table-->
-                    </div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <!--Line Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white shadow-sm border">
-                            <h6 class="mb-0">Line chart</h6>
-                            
-                            <div id="lineChartEcharts"  style="height: 400px;"></div>
-                        </div>
-                        <!--/Line Chart-->
-
-                    </div>
-                    
-                    
-                    <div class="col-sm-6">
-                        <!--Area Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container  bg-white shadow-sm border">
-                            <h6 class="mb-0">Area Chart</h6>
-
-                            <div id="areaChartEcharts"  style="height: 400px;"></div>
-                        </div>
-                        <!--/Area Table-->
-                    </div>
-                </div>
-
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <!--Bar Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white shadow-sm border">
-                            <h6 class="mb-2">Bar chart</h6>
-                            
-                            <div class="ct-chart" id="barChartEcharts"  style="height: 300px;"></div>
-                        </div>
-                        <!--/Bar Chart-->
-
-                    </div>
-                    
-                    
-                    <div class="col-sm-6">
-                        <!--Pie Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white shadow-sm border">
-                            <h6 class="mb-2">Pie chart</h6>
-                            
-                            <div id="pieChartEcharts"  style="height: 300px;"></div>
-                        </div>
-                        <!--/Pie Chart-->
-                    </div>
-                </div>
+                
 
                 <div class="row mt-3">
                     <div class="col-sm-12">
                         <!--Wheather Statistics Chart-->
                         <div class="mt-1 mb-3 p-3 button-container  bg-white shadow-sm border">
-                            <h6>Wheather Statistics</h6>
+                            <h6>Age Demographics </h6>
 
                             <div id="wheatherChartEcharts" style="height: 450px;"></div>
                         </div>
@@ -362,29 +292,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-sm-6">
-                        <!--Pie Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white shadow-sm border">
-                            <h6 class="mb-2">Radar chart</h6>
-                            
-                            <div id="radarChartEcharts"  style="height: 300px;"></div>
-                        </div>
-                        <!--/Pie Chart-->
-
-                    </div>
-                    
-                    
-                    <div class="col-sm-6">
-                        <!--Doughnut Chart-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white shadow-sm border">
-                            <h6 class="mb-2">Donut chart</h6>
-                            
-                            <div class="ct-chart" id="donutChartEcharts" style="height: 300px;"></div>
-                        </div>
-                        <!--/Doughnut Chart-->
-                    </div>
-                </div>
+                
 
                 <!--Footer-->
                 <div class="row mt-5 mb-4 footer">

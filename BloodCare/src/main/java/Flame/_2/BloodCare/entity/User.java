@@ -1,8 +1,9 @@
 package Flame._2.BloodCare.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.*;
+import jakarta.persistence.Id;
 
 @Entity
 
@@ -16,6 +17,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    
 
     // Getters and Setters
 

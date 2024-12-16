@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Donor {
@@ -29,6 +31,9 @@ public class Donor {
     private String appointmentDate;
     private String disease;
     private String donateThroughCamp;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // Getters and Setters
     public Long getId() {
@@ -190,4 +195,13 @@ public class Donor {
     public void setDonateThroughCamp(String donateThroughCamp) {
         this.donateThroughCamp = donateThroughCamp;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+  
 }

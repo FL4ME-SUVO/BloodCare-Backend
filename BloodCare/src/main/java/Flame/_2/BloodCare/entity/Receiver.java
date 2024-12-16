@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Receiver {
@@ -13,6 +15,10 @@ public class Receiver {
     private String firstName,middleName,lastName,email,mobile,alternativeMobile,dob,aadhaar,gender,bloodGroup,city,district,state,receivingDate,desiredBloodType,reason;
     private Integer age,weight,pinCode,quantity;
 
+     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+     
     // Getters and Setters
     public Long getId() {
         return id;
@@ -180,5 +186,12 @@ public class Receiver {
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/login.css" />
-  <link rel="icon" href="blood.ico" type="image/x-icon">
+  <link rel="icon" href="blood2.ico" type="image/x-icon">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <title>Sign in & Sign up Form</title>
@@ -25,9 +25,9 @@
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" name="password" required />
+            <input type="password" placeholder="Password" id="signin-password" name="password" required />
             <i class="far fa-eye eye-icon" id="signin-eye"
-              onclick="togglePassword('password', 'signin-eye')"></i>
+              onclick="togglePassword('signin-password', 'signin-eye')"></i>
           </div>
 
           <input type="submit" value="Login" class="btn solid" />
@@ -51,21 +51,21 @@
           <h2 class="title">Sign up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" name="firstName" placeholder="First name" required />
+            <input type="text" id="first-name" name="firstName" placeholder="First name" required />
           </div>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" name="lastName" placeholder="Last name" required />
+            <input type="text" id="last-name" name="lastName" placeholder="Last name" required />
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" required name="email" />
+            <input type="email"  placeholder="Email" required name="email" required id="signup-email" />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Create Password" name="password" required />
+            <input type="password" placeholder="Create Password" id="signup-password" name="password" required />
             <i class="far fa-eye eye-icon" id="signup-eye"
-              onclick="togglePassword('password', 'signup-eye')"></i>
+              onclick="togglePassword('signup-password', 'signup-eye')"></i>
           </div>
           <div class="password-requirements">
             <ul id="passwordCriteria">

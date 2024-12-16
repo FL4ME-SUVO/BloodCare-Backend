@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <!--Favicon Icon-->
-    <link rel="icon" href="blood2.ico" type="image/x-icon">
+    <link rel="icon" href="blood.ico" type="image/x-icon">
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -48,7 +48,8 @@
             <!--Logo-->
             <div class="col-sm-3 pl-0 text-center header-logo">
                 <div class="bg-theme mr-3 pt-3 pb-2 mb-0">
-                    <h3 class="logo"><strong><img src="assets/img/logo2.png" alt="" style="border-radius: 50%; margin-bottom: 5px;"> Blood Care</strong></h3>
+                    <h3 class="logo"><strong><img src="assets/img/logo2.png" alt=""
+                                style="border-radius: 50%; margin-bottom: 5px;"> Blood Care</strong></h3>
                 </div>
             </div>
             <!--Logo-->
@@ -173,9 +174,9 @@
 
                     <!--Search box and avatar-->
                     <div class="col-sm-8 col-4 text-right flex-header-menu justify-content-end">
-                        <!-- <div class="search-rounded mr-3">
+                        <div class="search-rounded mr-3">
                             <input type="text" class="form-control search-box" placeholder="Enter keywords.." />
-                        </div> -->
+                        </div>
                         <div class="mr-4">
                             <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -189,7 +190,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fa fa-book pr-2"></i> Reports</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="adminLogin.html"><i class="fa fa-power-off pr-2"></i> Logout</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-power-off pr-2"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -229,18 +230,15 @@
                                     <span class="none">Analytics <i class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
                                 <ul class="children" id="charts">
-                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chart JS</a></li>
-                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chartist JS</a></li>
-                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Echarts JS</a></li>
-                                    <li class="child"><a href="flot.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Flot JS</a></li>
-                                    <li class="child"><a href="morris.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Morris JS</a></li>
-                                    <li class="child"><a href="nvd3.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NVD3 JS</a></li>
+                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Blood Distribution</a></li>
+                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Donors vs Receivers</a></li>
+                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Age division</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('tables'); return false" class=""><i
                                         class="fa fa-pencil-square mr-3"></i>
-                                    <span class="none">Tables <i
+                                    <span class="none">Details & Requests <i
                                             class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
                                 <ul class="children" id="tables">
@@ -276,52 +274,91 @@
                     <!--Sidebar Naigation Menu-->
                 </div>
             </div>
+
+            <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
+                <h2 class="text-center">Approved Requests</h2>
+
+                <!-- Dropdown for selecting type -->
+                <div class="mb-4">
+                    <select id="requestType" class="form-select">
+                        <option value="donor">Donor Requests</option>
+                        <option value="receiver">Receiver Requests</option>
+                    </select>
+                </div>
+
+                <!-- Table for approved requests -->
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Details</th>
+                            <th>City</th>
+                            <th>Approval Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="approvedRequestsTable">
+                        <!-- Data will be dynamically inserted -->
+                    </tbody>
+                </table>
+            </div>
             <!--Sidebar left-->
 
-
-            <!--Content right-->
-            <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
-                <h5 class="mb-0"><strong>Approved Requests</strong></h5>
-                <span class="text-secondary">Tables <i class="fa fa-angle-right"></i> Approved Requests</span>
-                <!--JsGrid Sorting-->
-                <div class="mt-1 mb-4 p-3 button-container bg-white border shadow-sm">
-                    <div class="sort-panel row mb-2">
-                        <div class="col-sm-4 pr-1">
-                            <select id="sortingField" class="custom-select">
-                                <option>Donor Requests</option>
-                                <option>Receiver Requests</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-">
-                            <button type="button" class="btn btn-theme btn-round" id="sort"
-                                style="background-color: rgb(211, 17, 17);">Submit</button>
-                        </div>
-                    </div>
-                    <div id="jsGrid2" style="text-align: center;"></div>
-                </div>
-                <!--/JsGrid Sorting-->
-                <!--Footer-->
-                <div class="row mt-5 mb-4 footer">
-                    <div class="col-sm-8">
-                        <span>&copy; All rights reserved 2024 designed by <a class="text-theme"
-                                href="#">Shubhajit</a></span>
-                    </div>
-                    <div class="col-sm-4 text-right">
-                        <a href="contact.html" class="ml-2">Contact Us</a>
-                        <a href="about.html" class="ml-2">About Us</a>
-                    </div>
-                </div>
-                <!--Footer-->
-            </div>
         </div>
+
+        <!-- Include Bootstrap JS and Dependencies -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const requestTypeSelect = document.getElementById("requestType");
+                const table = document.getElementById("approvedRequestsTable");
+
+                // Fetch and display approved data
+                const fetchApprovedData = (type) => {
+                    const endpoint = type === "donor" ? "/admin/approved-donors" : "/admin/approved-receivers";
+
+                    fetch(endpoint)
+                        .then(response => response.json())
+                        .then(data => {
+                            table.innerHTML = ""; // Clear the table
+
+                            data.forEach(request => {
+                                const row = `
+                                <tr>
+                                    <td>${request.id}</td>
+                                    <td>${request.firstName}</td>
+                                    <td>${request.lastName}</td>
+                                    <td>${type === "donor" ? "Blood Group: " + request.bloodGroup : "Blood Type: " + request.desiredBloodType + ", Quantity: " + request.quantity}</td>
+                                    <td>${request.city}</td>
+                                    <td>${request.approvalDate}</td>
+                                </tr>`;
+                                table.innerHTML += row;
+                            });
+                        })
+                        .catch(err => console.error("Error fetching data:", err));
+                };
+
+                // Fetch donor data by default
+                fetchApprovedData("donor");
+
+                // Update table when dropdown changes
+                requestTypeSelect.addEventListener("change", (event) => {
+                    fetchApprovedData(event.target.value);
+                });
+            });
+        </script>
+
+    </div>
 
     </div>
 
 
     <!--Main Content-->
-
     </div>
-
 
     <!--Page Wrapper-->
 
@@ -345,11 +382,12 @@
     <!--Bootstrap Calendar-->
     <!--JsGrid table-->
     <script src="assets/js/jsgrid.min.js"></script>
-    <script src="assets/js/approvedTable.js"></script>
+    <script src="js/approvedRequest.js"></script>
 
     <!--Custom Js Script-->
     <script src="assets/js/custom.js"></script>
     <!--Custom Js Script-->
+    <script src="js/pendingRequest.js"></script>
 
 </body>
 

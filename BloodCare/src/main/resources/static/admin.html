@@ -244,18 +244,15 @@
                                     <span class="none">Analytics <i class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
                                 <ul class="children" id="charts">
-                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chart JS</a></li>
-                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chartist JS</a></li>
-                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Echarts JS</a></li>
-                                    <li class="child"><a href="flot.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Flot JS</a></li>
-                                    <li class="child"><a href="morris.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Morris JS</a></li>
-                                    <li class="child"><a href="nvd3.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NVD3 JS</a></li>
+                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Blood Distribution</a></li>
+                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Donors vs Receivers</a></li>
+                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Age division</a></li>
                                 </ul>
                             </li>
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('tables'); return false" class=""><i
                                         class="fa fa-pencil-square mr-3"></i>
-                                    <span class="none">Tables <i
+                                    <span class="none">Details & Requests <i
                                             class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
                                 <ul class="children" id="tables">
@@ -459,7 +456,7 @@
                 <div class="mt-1 mb-3 button-container">
                     <div class="row pl-0">
                         <!--Dashboard widget Contacts-->
-                        <div class="col-lg-4 col-md-4 col-sm-4 card-pro mb-3">
+                        <!-- <div class="col-lg-4 col-md-4 col-sm-4 card-pro mb-3">
                             <div class="card shadow">
                                 <div class="card-body">
                                     <h5 class="card-title bc-header"><strong>To Do List</strong></h5>
@@ -497,7 +494,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!--Dashboard widget Contacts-->
 
                         <!--Dashboard Profile card-->
@@ -548,325 +545,7 @@
 
                     </div>
                 </div>
-                <div class="mt-4 mb-4 p-3 bg-white border shadow-sm lh-sm">
-                    <!--Order Listing-->
-                    <div class="product-list">
-
-                        <div class="row border-bottom mb-4">
-                            <div class="col-sm-8 pt-2">
-                                <h6 class="mb-4 bc-header"><strong>Pending Requests</strong></h6>
-                            </div>
-                            <div class="col-sm-4 text-right pb-3">
-                                <button type="button" class="btn btn-danger icon-round shadow pull-right">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-
-                                <div class="pull-right mr-3 btn-order-bulk">
-                                    <select class="shadow bg-secondary bulk-actions">
-                                        <option data-display="<span class='text-white'><b>Bulk status</b></span>">Status
-                                            options</option>
-                                        <option value="1">Pending</option>
-                                        <option value="2">Cancelled</option>
-                                        <option value="4">Approved</option>
-                                    </select>
-                                </div>
-
-                                <div class="clearfix"></div>
-                            </div>
-                        </div>
-
-                        <div class="table-responsive product-list">
-
-                            <table class="table table-bordered table-striped mt-0" id="productList">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px;" class="p-0 pr-4 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="orderAll">
-                                                    <label for="orderAll"></label>
-                                                </span>
-                                            </div>
-                                        </th>
-                                        <th>Receiver ID</th>
-                                        <th>Receiver Name</th>
-                                        <th>Status</th>
-                                        <th>Quantity (units)</th>
-                                        <th>Date of Receiving</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order1">
-                                                    <label for="order1"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#13</td>
-                                        <td class="align-middle">
-                                            Shubhajit Giri
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-warning">Pending</span></td>
-                                        <td class="align-middle">200</td>
-                                        <td>15/09/2025</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order2">
-                                                    <label for="order2"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#14</td>
-                                        <td class="align-middle">
-                                            Siddharta Sau
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-danger">Cancelled</span></td>
-                                        <td class="align-middle">20</td>
-                                        <td>15/09/2025</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order3">
-                                                    <label for="order3"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#15</td>
-                                        <td class="align-middle">
-                                            Souhardya Sinha
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-success">Approved</span></td>
-                                        <td class="align-middle">20</td>
-                                        <td>15/09/2018</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order4">
-                                                    <label for="order4"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#16</td>
-                                        <td class="align-middle">
-                                            Subhraprakash Santra
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-warning">Pending</span></td>
-                                        <td class="align-middle">20</td>
-                                        <td>15/09/2025</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order5">
-                                                    <label for="order5"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#17</td>
-                                        <td class="align-middle">
-                                            Sandipan Chokravorty
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-danger">Cancelled</span></td>
-                                        <td class="align-middle">20</td>
-                                        <td>15/09/2018</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order6">
-                                                    <label for="order6"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#18</td>
-                                        <td class="align-middle">
-                                            Shubhajit Giri
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-success">Approved</span></td>
-                                        <td class="align-middle">10</td>
-                                        <td>15/09/2025</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 10px;" class="p-0 pr-1 align-middle">
-                                            <div class="form-check-box cta">
-                                                <span class="color1">
-                                                    <input type="checkbox" id="order7">
-                                                    <label for="order7"></label>
-                                                </span>
-                                            </div>
-                                        </td>
-                                        <td>Ord#19</td>
-                                        <td class="align-middle">
-                                            Siddharta Sau
-                                        </td>
-                                        <td class="align-middle"><span class="badge badge-warning">Pending</span></td>
-                                        <td class="align-middle">20</td>
-                                        <td>15/09/2025</td>
-                                        <td class="align-middle text-center">
-                                            <button class="btn btn-theme" data-toggle="modal" data-target="#orderInfo">
-                                                <i class="fa fa-eye"></i>
-                                            </button>
-                                            <button class="btn btn-success" data-toggle="modal"
-                                                data-target="#orderUpdate"><i class="fa fa-pencil"></i></button>
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </td>
-                                    </tr>
-                            </table>
-
-                            <div class="text-right">
-                                <button class="btn btn-outline-theme"><i class="fa fa-eye"></i> View full
-                                    Requests</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Order Listing-->
-
-                    <!--Order Info Modal-->
-                    <div class="modal fade" id="orderInfo" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Ord#13 details</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="row">Blood Type</th>
-                                                <th>Blood Group</th>
-                                                <th>Age</th>
-                                                <th>Weight</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row">Red Blood Cell</td>
-                                                <td>B+</td>
-                                                <td>25</td>
-                                                <td>66</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Order Info Modal-->
-
-                    <!--Order Update Modal-->
-                    <div class="modal fade" id="orderUpdate" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Ord#13 details update</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="row">Blood Type</th>
-                                                <th>Blood Group</th>
-                                                <th>Age</th>
-                                                <th>Weight</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td scope="row" class="align-middle">Red Blood Cell</td>
-                                                <td class="align-middle">B+</td>
-                                                <td class="align-middle">25</td>
-                                                <td class="align-middle">66</td>
-                                                <td style="width: 120px;" class="align-middle">
-                                                    <button class="btn btn-theme mr-1"><i
-                                                            class="fa fa-pencil-square-o"></i></button>
-                                                    <button class="btn btn-danger"><i
-                                                            class="fa fa-trash-o"></i></button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Order Update Modal-->
-                </div>
+                
                 <!--Footer-->
                 <div class="row mt-5 mb-4 footer">
                     <div class="col-sm-8">

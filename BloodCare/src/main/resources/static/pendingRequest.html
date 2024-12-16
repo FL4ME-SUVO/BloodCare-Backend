@@ -48,8 +48,7 @@
             <!--Logo-->
             <div class="col-sm-3 pl-0 text-center header-logo">
                 <div class="bg-theme mr-3 pt-3 pb-2 mb-0">
-                    <h3 class="logo"><strong><img src="assets/img/logo2.png" alt="" style="border-radius: 50%; margin-bottom: 5px;"> Blood Care</strong></h3>
-
+                    <h3 class="logo">Blood Care</h3>
                 </div>
             </div>
             <!--Logo-->
@@ -174,9 +173,9 @@
 
                     <!--Search box and avatar-->
                     <div class="col-sm-8 col-4 text-right flex-header-menu justify-content-end">
-                        <!-- <div class="search-rounded mr-3">
+                        <div class="search-rounded mr-3">
                             <input type="text" class="form-control search-box" placeholder="Enter keywords.." />
-                        </div> -->
+                        </div>
                         <div class="mr-4">
                             <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -190,7 +189,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#"><i class="fa fa-book pr-2"></i> Reports</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="adminLogin.html"><i class="fa fa-power-off pr-2"></i> Logout</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-power-off pr-2"></i> Logout</a>
                             </div>
                         </div>
                     </div>
@@ -219,24 +218,18 @@
                     <div class="sidebar-menu-container">
                         <ul class="sidebar-menu mt-4 mb-4">
                             <li class="parent">
-                                <a href="admin.html"><i
+                                <a href="#" onclick="toggle_menu('dashboard'); return false" class=""><i
                                         class="fa fa-dashboard mr-3"> </i>
-                                    <span class="none">Dashboard</span>
+                                    <span class="none">Dashboard <i
+                                            class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
-                               
-                            </li>
-                            <li class="parent">
-                                <a href="#" onclick="toggle_menu('charts'); return false" class=""><i class="fa fa-pie-chart mr-3"></i>
-                                    <span class="none">Analytics <i class="fa fa-angle-down pull-right align-bottom"></i></span>
-                                </a>
-                                <ul class="children" id="charts">
-                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chart JS</a></li>
-                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Chartist JS</a></li>
-                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Echarts JS</a></li>
-                                    <li class="child"><a href="flot.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Flot JS</a></li>
-                                    <li class="child"><a href="morris.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Morris JS</a></li>
-                                    <li class="child"><a href="nvd3.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NVD3 JS</a></li>
+                                <ul class="children" id="dashboard">
+                                    <li class="child"><a href="admin.html" class="ml-4"><i
+                                                class="fa fa-angle-right mr-2"></i> Over View</a></li>
+                                    <li class="child"><a href="index2.html" class="ml-4"><i
+                                                class="fa fa-angle-right mr-2"></i> Analytics</a></li>
                                 </ul>
+                            </li>
                             </li>
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('tables'); return false" class=""><i
@@ -279,51 +272,123 @@
             </div>
             <!--Sidebar left-->
 
-
-            <!--Content right-->
             <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
-                <h5 class="mb-0"><strong>Pending Requests</strong></h5>
+                <h2 class="mb-0">Pending Requests</h2>
                 <span class="text-secondary">Tables <i class="fa fa-angle-right"></i> Pending Requests</span>
-                <!--JsGrid Sorting-->
-                <div class="mt-1 mb-4 p-3 button-container bg-white border shadow-sm">
-                    <div class="sort-panel row mb-2">
-                        <div class="col-sm-4 pr-1">
-                            <select id="sortingField" class="custom-select">
-                                <option>Donor Requests</option>
-                                <option>Receiver Requests</option>
-                            </select>
-                        </div>
-                        <div class="col-sm-">
-                            <button type="button" class="btn btn-theme btn-round" id="sort"
-                                style="background-color: rgb(211, 17, 17);">Submit</button>
-                        </div>
-                    </div>
-                    <div id="jsGrid2"></div>
-                </div>
-                <!--/JsGrid Sorting-->
-                <!--Footer-->
-                <div class="row mt-5 mb-4 footer">
-                    <div class="col-sm-8">
-                        <span>&copy; All rights reserved 2024 designed by <a class="text-theme"
-                                href="#">Shubhajit</a></span>
-                    </div>
-                    <div class="col-sm-4 text-right">
-                        <a href="contact.html" class="ml-2">Contact Us</a>
-                        <a href="about.html" class="ml-2">About Us</a>
+                <!-- Dropdown for selecting type -->
+                <div class="sort-panel row mb-2">
+                    <div class="col-sm-4 pr-1">
+                        <select id="requestType" class="form-select">
+                            <option value="donor">Donor Requests</option>
+                            <option value="receiver">Receiver Requests</option>
+                        </select>
                     </div>
                 </div>
-                <!--Footer-->
+
+                <!-- Table for requests -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Details</th>
+                            <th>City</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pendingRequestsTable">
+                        <!-- Data will be dynamically inserted -->
+                    </tbody>
+                </table>
             </div>
+
+            <!-- Include Bootstrap JS and Dependencies -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/bootstrap.min.js"></script>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const requestTypeSelect = document.getElementById("requestType");
+                    const table = document.getElementById("pendingRequestsTable");
+
+                    // Fetch and display pending data
+                    const fetchPendingData = (type) => {
+                        const endpoint = type === "donor" ? "/admin/pending-donor-requests" : "/admin/pending-receiver-requests";
+
+                        fetch(endpoint)
+                            .then(response => response.json())
+                            .then(data => {
+                                table.innerHTML = ""; // Clear table
+
+                                data.forEach(request => {
+                                    const row = `
+                                        <tr>
+                                            <td>${request.id}</td>
+                                            <td>${request.firstName}</td>
+                                            <td>${request.lastName}</td>
+                                            <td>${type === "donor" ? "Blood Group: " + request.bloodGroup : "Blood Type: " + request.desiredBloodType}</td>
+                                            <td>${request.city}</td>
+                                            <td>
+                                                <button class="btn btn-success" onclick="approveRequest('${type}', ${request.id})">Approve</button>
+                                                <button class="btn btn-danger" onclick="rejectRequest('${type}', ${request.id})">Reject</button>
+                                            </td>
+                                        </tr>`;
+                                    table.innerHTML += row;
+                                });
+                            })
+                            .catch(err => console.error("Error fetching data:", err));
+                    };
+
+                    // Approve a request
+                    window.approveRequest = (type, id) => {
+                        const endpoint = type === "donor"
+                            ? `/admin/approve-donor/${id}`
+                            : `/admin/approve-receiver/${id}`; // Use backticks for template literals
+
+                        fetch(endpoint, { method: "POST" })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`Failed to approve request. Status: ${response.status}`); // Error handling for unsuccessful response
+                                }
+                                return response.json(); // Assuming you might want to handle the response data later
+                            })
+                            .then(() => fetchPendingData(type)) // Refresh the table after approving
+                            .catch(err => console.error("Error approving request:", err));
+                    };
+
+                    // Reject a request
+                    window.rejectRequest = (type, id) => {
+                        const endpoint = type === "donor"
+                            ? `/admin/reject-donor/${id}`
+                            : `/admin/reject-receiver/${id}`; // Use backticks for template literals
+
+                        fetch(endpoint, { method: "POST" })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`Failed to reject request. Status: ${response.status}`); // Error handling for unsuccessful response
+                                }
+                                return response.json(); // Assuming you might want to handle the response data later
+                            })
+                            .then(() => fetchPendingData(type)) // Refresh the table after rejecting
+                            .catch(err => console.error("Error rejecting request:", err));
+                    };
+
+                    // Fetch donor requests by default
+                    fetchPendingData("donor");
+
+                    // Handle dropdown change
+                    requestTypeSelect.addEventListener("change", (event) => {
+                        fetchPendingData(event.target.value);
+                    });
+                });
+            </script>
 
         </div>
 
+        <!--Main Content-->
 
     </div>
-
-    <!--Main Content-->
-
-    </div>
-
 
     <!--Page Wrapper-->
 
@@ -347,7 +412,8 @@
     <!--Bootstrap Calendar-->
     <!--JsGrid table-->
     <script src="assets/js/jsgrid.min.js"></script>
-    <script src="assets/js/pendingTable.js"></script>
+    <script src="js/approvedRequest.js"></script>
+    <script src="js/pendingRequest.js"></script>
 
     <!--Custom Js Script-->
     <script src="assets/js/custom.js"></script>
