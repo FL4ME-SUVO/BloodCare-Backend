@@ -1,0 +1,585 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Make box-sizing more predictable across all elements */
+}
+
+body,
+input {
+  font-family: "Poppins", sans-serif; /* Set font family for the body and input fields */
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Forms Container */
+.forms-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  height: 100%;
+}
+
+form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+form.sign-in-form {
+  z-index: 2;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  max-width: 380px;
+  width: 100%;
+  background-color: #f0f0f0; /* Light background for input fields */
+  margin: 10px 0;
+  height: 55px; /* Fixed height for consistency */
+  border-radius: 55px; /* Rounded corners */
+  display: grid;
+  grid-template-columns: 15% 85%; /* Icon and input field layout */
+  padding: 0 0.4rem;
+  position: relative; /* Required for positioning the eye icon */
+}
+
+.input-field i {
+  text-align: center;
+  line-height: 55px; /* Center the icon vertically */
+  color: #acacac;
+  transition: 0.5s;
+  font-size: 1.1rem; /* Icon size */
+}
+
+.input-field input {
+  background: none; /* No background for the input */
+  outline: none; /* Remove outline on focus */
+  border: none; /* No border */
+  line-height: 1; /* Single line text */
+  font-weight: 600; /* Font weight */
+  font-size: 1.1rem; /* Font size */
+  color: #333; /* Text color */
+}
+
+.input-field input::placeholder {
+  color: #aaa; /* Placeholder color */
+  font-weight: 500;
+}
+
+.social-text {
+  padding: 0.7rem 0;
+  font-size: 1rem;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+}
+
+.social-icon {
+  height: 46px;
+  width: 46px; /* Icon size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.45rem;
+  color: #333; /* Icon color */
+  border-radius: 50%; /* Circle shape */
+  border: 1px solid #333; /* Border style */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.1rem; /* Font size */
+  transition: 0.3s; /* Smooth transition for hover */
+}
+
+.social-icon:hover {
+  color: #ed482b; /* Hover color */
+  border-color: #d30404; /* Change border color on hover */
+}
+
+.btn {
+  width: 150px;
+  background-color: #f91414; /* Button background color */
+  border: none; /* No border on button */
+  outline: none; /* Remove outline */
+  height: 49px; /* Consistent height */
+  border-radius: 49px; /* Rounded corners */
+  color: #fff; /* Text color */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: 600; /* Font weight */
+  margin: 10px 0;
+  cursor: pointer; /* Pointer on hover */
+  transition: 0.5s; /* Smooth button hover transition */
+}
+
+.btn:hover {
+  background-color: #bc004e; /* Darker color on hover */
+}
+
+.panels-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container:before {
+  content: "";
+  position: absolute;
+  height: 2000px; /* Large height for the background effect */
+  width: 2000px; /* Large width for the background effect */
+  top: -10%;
+  right: 48%;
+  transform: translateY(-50%);
+  background-image: linear-gradient(-45deg, #ff4c4c 0%, #ff0000 100%); /* Gradient background */
+  transition: 1.8s ease-in-out; /* Transition for animation */
+  border-radius: 50%; /* Circular background */
+  z-index: 6;
+}
+
+.image {
+  width: 100%; /* Responsive image */
+  transition: transform 1.1s ease-in-out; /* Smooth transition */
+  transition-delay: 0.4s; /* Delay for smoother effect */
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align items to the end */
+  justify-content: space-around; /* Space the elements */
+  text-align: center; /* Text centered in the panels */
+  z-index: 6; /* Ensure panels are above other content */
+}
+
+.left-panel {
+  pointer-events: all; /* Enable interaction */
+  padding: 3rem 17% 2rem 12%; /* Padding adjustments */
+}
+
+.right-panel {
+  pointer-events: none; /* Disable interaction initially */
+  padding: 3rem 12% 2rem 17%; /* Padding adjustments */
+}
+
+.panel .content {
+  color: #fff; /* Text color in panels */
+  transition: transform 0.9s ease-in-out; /* Transition for panel content */
+  transition-delay: 0.6s; /* Delay for smoother animation */
+}
+
+.panel h3 {
+  font-weight: 600; /* Bold heading */
+  line-height: 1; /* Single line height */
+  font-size: 1.5rem; /* Font size for headings */
+}
+
+.panel p {
+  font-size: 0.95rem; /* Font size for paragraph text */
+  padding: 0.7rem 0; /* Padding for paragraph */
+}
+
+.btn.transparent {
+  margin: 0; /* No margin */
+  background: none; /* Transparent background */
+  border: 2px solid #fff; /* White border */
+  width: 130px; /* Width for button */
+  height: 41px; /* Height for button */
+  font-weight: 600; /* Bold text */
+  font-size: 0.8rem; /* Font size */
+}
+
+.right-panel .image,
+.right-panel .content {
+  transform: translateX(800px); /* Animation translation */
+}
+
+/* ANIMATION STYLES */
+.container.sign-up-mode:before {
+  transform: translate(100%, -50%); /* Move background for sign-up mode */
+  right: 52%; /* Position adjustment */
+}
+
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+  transform: translateX(-800px); /* Animation for left panel */
+}
+
+.container.sign-up-mode .signin-signup {
+  left: 25%; /* Position adjustments for signup */
+}
+
+.container.sign-up-mode form.sign-up-form {
+  opacity: 1; /* Make sign up form visible */
+  z-index: 2; /* Bring it to the front */
+}
+
+.container.sign-up-mode form.sign-in-form {
+  opacity: 0; /* Hide sign in form */
+  z-index: 1; /* Send behind */
+}
+
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+  transform: translateX(0%); /* Reset position for right panel */
+}
+
+.container.sign-up-mode .left-panel {
+  pointer-events: none; /* Disable left panel interaction */
+}
+
+.container.sign-up-mode .right-panel {
+  pointer-events: all; /* Enable right panel interaction */
+}
+
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+@media (max-width: 870px) {
+  .container {
+    min-height: 800px; /* Resize minimum height */
+    height: 100vh; /* Set to viewport height */
+  }
+  .signin-signup {
+    width: 100%; /* Full width for signin-signup */
+    top: 95%; /* Adjust position */
+    transform: translate(-50%, -100%); /* Translate for effect */
+    transition: 1s 0.8s ease-in-out; /* Transition for smoothness */
+  }
+
+  .signin-signup,
+  .container.sign-up-mode .signin-signup {
+    left: 50%; /* Center */
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr; /* Stack panels */
+    grid-template-rows: 1fr 2fr 1fr; /* Rows for stacked layout */
+  }
+
+  .panel {
+    flex-direction: row; /* Align items horizontally */
+    justify-content: space-around; /* Space around */
+    align-items: center; /* Center alignment */
+    padding: 2.5rem 8%; /* Responsive padding */
+    grid-column: 1 / 2; /* Single column layout */
+  }
+
+  .right-panel {
+    grid-row: 3 / 4; /* Position in grid */
+  }
+
+  .left-panel {
+    grid-row: 1 / 2; /* Position in grid */
+  }
+
+  .image {
+    width: 200px; /* Fixed image size */
+    transition: transform 0.9s ease-in-out; /* Transition for image */
+    transition-delay: 0.6s; /* Delay for effect */
+  }
+
+  .panel .content {
+    padding-right: 15%; /* Right padding for better alignment */
+    transition: transform 0.9s ease-in-out; /* Transition for content */
+    transition-delay: 0.8s; /* Delay for effect */
+  }
+
+  .panel h3 {
+    font-size: 1.2rem; /* Reduced font size for headings */
+  }
+
+  .panel p {
+    font-size: 0.7rem; /* Reduced font size for paragraphs */
+    padding: 0.5rem 0; /* Padding for paragraphs */
+  }
+
+  .btn.transparent {
+    width: 110px; /* Width for transparent button */
+    height: 35px; /* Height for transparent button */
+    font-size: 0.7rem; /* Font size for button */
+  }
+
+  .container:before {
+    width: 1500px; /* Width for background */
+    height: 1500px; /* Height for background */
+    transform: translateX(-50%); /* Center alignment */
+    left: 30%; /* Positioning */
+    bottom: 68%; /* Positioning */
+    right: initial; /* Resetting */
+    top: initial; /* Resetting */
+    transition: 2s ease-in-out; /* Transition for smooth effect */
+  }
+
+  .container.sign-up-mode:before {
+    transform: translate(-50%, 100%); /* Transition for sign-up mode */
+    bottom: 32%; /* Positioning adjustment */
+    right: initial; /* Resetting */
+  }
+
+  .container.sign-up-mode .left-panel .image,
+  .container.sign-up-mode .left-panel .content {
+    transform: translateY(-300px); /* Animation effect */
+  }
+
+  .container.sign-up-mode .right-panel .image,
+  .container.sign-up-mode .right-panel .content {
+    transform: translateY(0px); /* Reset animation for right panel */
+  }
+
+  .right-panel .image,
+  .right-panel .content {
+    transform: translateY(300px); /* Animation for right panel */
+  }
+
+  .container.sign-up-mode .signin-signup {
+    top: 5%; /* Top positioning */
+    transform: translate(-50%, 0); /* Translate for effect */
+  }
+}
+
+@media (max-width: 570px) {
+  form {
+    padding: 0 1.5rem; /* Padding adjustments for small screens */
+  }
+
+  .image {
+    display: none; /* Hide image on small screens */
+  }
+  .panel .content {
+    padding: 0.5rem 1rem; /* Padding adjustments for content */
+  }
+  .container {
+    padding: 1.5rem; /* Padding adjustments for the container */
+  }
+
+  .container:before {
+    bottom: 72%; /* Positioning while in sign-up mode */
+    left: 50%; /* Center alignment */
+  }
+
+  .container.sign-up-mode:before {
+    bottom: 28%; /* Position adjustment */
+    left: 50%; /* Center alignment */
+  }
+}
+
+.eye-icon {
+  cursor: pointer; /* Pointer cursor for eye icon */
+  position: absolute; /* Positioning for absolute placement */
+  right: 15px; /* Distance from right */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Center adjustment */
+}
+
+.password-requirements {
+  display: none; /* Hidden by default */
+  position: absolute; /* Positioning the requirements list */
+  top: 60px; /* Adjust based on input field's height */
+  left: 0; /* Align left edge with input */
+  margin-top: 5px; /* Spacing from input */
+  margin-left: 200px; /* Adjust for the positioning */
+  background-color: #fff; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  padding: 10px; /* Inner padding for the content */
+  width: 100%; /* Full width */
+  max-width: 340px; /* Match the input field width */
+  z-index: 999; /* Above other elements */
+  transition: display 0.2s ease-in-out; /* Transition for smooth appearance */
+}
+
+.password-requirements ul {
+  list-style-type: none; /* No bullet points */
+  padding: 0; /* No padding */
+  margin: 0; /* No margin */
+}
+
+.password-requirements.visible {
+  display: block; /* Show when visible */
+}
+
+.status {
+  margin-left: 10px; /* Spacing */
+  font-weight: bold; /* Bold text for status */
+}
+
+.valid {
+  color: green; /* Valid criteria */
+}
+
+.invalid {
+  color: red; /* Invalid criteria */
+}
+
+.valid::before {
+  content: "✔  "; /* Checkmark for valid criteria */
+  color: green; /* Green checkmark */
+}
+
+.invalid::before {
+  content: "✖  "; /* Cross for invalid criteria */
+  color: red; /* Red cross */
+}
+
+/* Error Popup Styles */
+.error-popup {
+  position: fixed; /* Fixed positioning for popups */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center popup */
+  background-color: #fefefe; /* Light background for contrast */
+  border: 2px solid #f44336; /* Red border to indicate an error */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Inner padding */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  z-index: 1000; /* Above other elements */
+  display: none; /* Hidden by default */
+  max-width: 400px; /* Limit width */
+  text-align: center; /* Center text */
+}
+
+.error-popup.visible {
+  display: block; /* Show when visible */
+}
+
+#error-message {
+  display: block; /* Ensure the message takes space */
+  margin-bottom: 15px; /* Space below the message */
+  font-weight: bold; /* Bold message text */
+  color: #f44336; /* Red color for error messages */
+}
+
+/* Close Button Styles */
+.error-popup button {
+  background-color: #f44336; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  padding: 10px 15px; /* Button padding */
+  font-weight: bold; /* Make button text bold */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  margin-top: 10px; /* Add some margin for spacing */
+}
+
+.error-popup button:hover {
+  background-color: #d32f2f; /* Darker red on hover */
+}
+.forgot-password {
+  text-align: center; /* Center the link */
+  margin-top: 10px; /* Give some space above the link */
+}
+
+.forgot-password-link {
+  color: #007BFF; /* Standard blue color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.forgot-password-link:hover {
+  color: red; /* Change text color to red on hover */
+  text-decoration: underline; /* Optional: underline on hover */
+}
+
+.captcha-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+#generated-captcha{
+  max-width: 150px;
+  width: 100%;
+  background-color: #45f3ff; /* Light background for input fields */
+  margin-top: 30px;
+  height: 45px; /* Fixed height for consistency */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 2rem;
+  grid-template-columns: 15% 85%; /* Icon and input field layout */
+  padding: 0 0.4rem;
+  position: relative; /* Required for positioning the eye icon */
+}
+
+
+#entered-captcha{
+  max-width: 300px;
+  width: 100%;
+  background-color: #f0f0f0; /* Light background for input fields */
+  margin-top: 10px;
+  height: 40px; /* Fixed height for consistency */
+  border-radius: 55px; /* Rounded corners */
+
+  grid-template-columns: 15% 85%; /* Icon and input field layout */
+  padding: 0 0.4rem;
+  position: relative; /* Required for positioning the eye icon */
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: larger;
+  font-weight: 400;
+  text-align: center;
+}
+#close-captcha-modal{
+  font-size: 2rem;
+  font-weight: 700;
+}
+#close-captcha-modal:hover{
+  color: #ed482b; /* Hover color */
+  border-color: #d30404;
+}
+
+.hidden {
+  display: none;
+}
+#status{
+  color: black;
+}

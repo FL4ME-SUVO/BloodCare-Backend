@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="icon" href="blood.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <title>Sign in & Sign up Form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="forms-container">
+      <div class="signin-signup">
+        <!-- Sign-in Form -->
+        <form method="post" action="/login" class="sign-in-form" name="signin">
+          <h2 class="title">Sign in</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input name="email" type="text" placeholder="Username or email" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" name="password" required />
+            <i class="far fa-eye eye-icon" id="signin-eye"
+              onclick="togglePassword('password', 'signin-eye')"></i>
+          </div>
+
+          <input type="submit" value="Login" class="btn solid" />
+          <!-- Forgot Password Link -->
+          <p class="forgot-password">
+            <a href="forget.html" class="forgot-password-link">Forgot Password?</a>
+          </p>
+
+          <!-- Social media signup -->
+          <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </form>
+
+        <!-- Sign-up Form -->
+        <form method="post" action="/signup" class="sign-up-form" name="signup">
+          <h2 class="title">Sign up</h2>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="firstName" placeholder="First name" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" name="lastName" placeholder="Last name" required />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" required name="email" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Create Password" name="password" required />
+            <i class="far fa-eye eye-icon" id="signup-eye"
+              onclick="togglePassword('password', 'signup-eye')"></i>
+          </div>
+          <div class="password-requirements">
+            <ul id="passwordCriteria">
+              <li class="criteria" id="length">Minimum 8 characters <span class="status"></span></li>
+              <li class="criteria" id="uppercase">At least one uppercase letter <span class="status"></span></li>
+              <li class="criteria" id="lowercase">At least one lowercase letter <span class="status"></span></li>
+              <li class="criteria" id="number">At least one number <span class="status"></span></li>
+              <li class="criteria" id="special">At least one special character <span class="status"></span></li>
+              <li class="criteria" id="noSpaces">No spaces allowed <span class="status"></span></li>
+              <li class="criteria" id="common">Not a common password <span class="status"></span></li>
+              <li class="criteria" id="repeat">No three repeated characters <span class="status"></span></li>
+            </ul>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Confirm Password" id="confirm-password" required />
+            <i class="far fa-eye eye-icon" id="confirm-eye"
+              onclick="togglePassword('confirm-password', 'confirm-eye')"></i>
+          </div>
+          <input type="submit" class="btn" value="Sign up" />
+
+          <p class="social-text">Or Sign up with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h3>New here?</h3>
+          <p>
+            Welcome! Join our community by signing up today. Whether you want to donate or receive blood,
+            registering is quick and easy. Take the first step toward making a life-saving difference!
+          </p>
+          <button class="btn transparent" id="sign-up-btn">Sign up</button>
+        </div>
+        <img src="img/login.png" class="image" alt="" />
+      </div>
+      <div class="panel right-panel">
+        <div class="content">
+          <h3>One of us?</h3>
+          <p>
+            Welcome back! Log in to access your account, schedule donations, or track your contributions.
+            Thank you for being a vital part of our life-saving community!
+          </p>
+          <button class="btn transparent" id="sign-in-btn">Sign in</button>
+        </div>
+        <img src="img/register.png" class="image" alt="" />
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Error Popup for Criteria -->
+  <div id="error-popup-criteria" class="error-popup">
+    <span id="error-message-criteria">Message goes here</span>
+    <button id="close-popup-criteria">Close</button>
+  </div>
+
+  <!-- Error Popup for Mismatch -->
+  <div id="error-popup-mismatch" class="error-popup">
+    <span id="error-message-mismatch">Message goes here</span>
+    <button id="close-popup-mismatch">Close</button>
+  </div>
+  <!-- Captcha Modal -->
+  <div id="captcha-modal" class="captcha-modal hidden">
+    <div class="modal-content">
+      <span class="close" id="close-captcha-modal">&times;</span>
+      <h3>Captcha Verification</h3>
+      <p>Please enter the captcha shown below to continue:</p>
+      <div style="display: inline-block;">
+        <input type="text" id="generated-captcha" readonly />
+      </div>
+      <div>
+        <input type="text" id="entered-captcha" placeholder="Enter Captcha" required />
+      </div>
+      <p id="status"></p>
+      <div>
+        <button id="check-captcha" class="btn">Check Captcha</button>
+      </div>
+    </div>
+  </div>
+  <script src="/js/login.js"></script>
+</body>
+
+</html>
