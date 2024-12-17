@@ -2,30 +2,122 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Font Awesome Icons  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <!-- Google Fonts  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/forget.css">
-    <link rel="icon" href="blood2.ico" type="image/x-icon">   
+    <link rel="icon" href="blood2.ico" type="image/x-icon">
     <title>Forgot Password</title>
 </head>
 
 <body>
-    <div class="card">
+    <div class="card" id="emailSection">
         <p class="lock-icon"><i class="fa-solid fa-lock"></i></p>
         <h2>Forgot Password?</h2>
         <p>You can reset your Password here</p>
-        <input type="text" class="passInput" placeholder="Email address">
-        <button>Reset Password</button>
+        <input type="text" id="emailInput" class="passInput" placeholder="Email address">
+        <button onclick="sendOtp()">Send OTP</button>
     </div>
+
+    <div class="card" id="otpSection" style="display: none;">
+        <h2>Enter OTP</h2>
+        <p>Check your email for the OTP</p>
+        <input type="text" id="otpInput" class="passInput" placeholder="Enter OTP">
+        <button onclick="verifyOtp()">Verify OTP</button>
+    </div>
+
+    <div class="card" id="resetSection" style="display: none;">
+        <h2>Reset Password</h2>
+        <input type="password" id="newPasswordInput" class="passInput" placeholder="New Password">
+        <button onclick="resetPassword()">Reset Password</button>
+    </div>
+
+    <script>
+        const apiUrl = "/api/forgot-password";
+    
+        function sendOtp() {
+            const email = document.getElementById("emailInput").value;
+    
+            fetch(`${apiUrl}/send-otp`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message);
+                if (message === "OTP sent to your email") {
+                    document.getElementById("emailSection").style.display = "none";
+                    document.getElementById("otpSection").style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error sending OTP. Please try again.');
+            });
+        }
+    
+        function verifyOtp() {
+            const email = document.getElementById("emailInput").value;
+            const otp = document.getElementById("otpInput").value;
+    
+            fetch(`${apiUrl}/verify-otp`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, otp })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message);
+                if (message === "OTP verified") {
+                    document.getElementById("otpSection").style.display = "none";
+                    document.getElementById("resetSection").style.display = "block";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error verifying OTP. Please try again.');
+            });
+        }
+    
+        function resetPassword() {
+            const email = document.getElementById("emailInput").value;
+            const newPassword = document.getElementById("newPasswordInput").value;
+    
+            fetch(`${apiUrl}/reset-password`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, newPassword })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(message => {
+                alert(message);
+                if (message === "Password updated successfully") {
+                    window.location.href = "/login";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error resetting password. Please try again.');
+            });
+        }
+    </script>
 </body>
 
 </html>

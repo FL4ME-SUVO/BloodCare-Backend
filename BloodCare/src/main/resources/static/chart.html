@@ -215,27 +215,31 @@
                     </div>
                     <!--Image Avatar-->
 
+                   
                     <!--Sidebar Navigation Menu-->
                     <div class="sidebar-menu-container">
                         <ul class="sidebar-menu mt-4 mb-4">
                             <li class="parent">
-                                <a href="#" onclick="toggle_menu('dashboard'); return false" class=""><i
+                                <a href="admin.html"><i
                                         class="fa fa-dashboard mr-3"> </i>
-                                    <span class="none">Dashboard <i
-                                            class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                    <span class="none">Dashboard</span>
                                 </a>
-                                <ul class="children" id="dashboard">
-                                    <li class="child"><a href="admin.html" class="ml-4"><i
-                                                class="fa fa-angle-right mr-2"></i> Over View</a></li>
-                                    <li class="child"><a href="index2.html" class="ml-4"><i
-                                                class="fa fa-angle-right mr-2"></i> Analytics</a></li>
-                                </ul>
+                               
                             </li>
+                            <li class="parent">
+                                <a href="#" onclick="toggle_menu('charts'); return false" class=""><i class="fa fa-pie-chart mr-3"></i>
+                                    <span class="none">Analytics <i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                </a>
+                                <ul class="children" id="charts">
+                                    <li class="child"><a href="chart.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Blood Distribution</a></li>
+                                    <li class="child"><a href="chartist.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Donors vs Receivers</a></li>
+                                    <li class="child"><a href="echarts.html" class="ml-4"><i class="fa fa-angle-right mr-2"></i> Age division</a></li>
+                                </ul>
                             </li>
                             <li class="parent">
                                 <a href="#" onclick="toggle_menu('tables'); return false" class=""><i
                                         class="fa fa-pencil-square mr-3"></i>
-                                    <span class="none">Tables <i
+                                    <span class="none">Details & Requests <i
                                             class="fa fa-angle-down pull-right align-bottom"></i></span>
                                 </a>
                                 <ul class="children" id="tables">

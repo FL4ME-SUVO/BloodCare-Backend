@@ -45,6 +45,37 @@
             <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </form>
+        <script>
+          document.querySelector(".sign-in-form").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+          
+            const formData = new FormData(event.target); // Capture form data
+          
+            try {
+              const response = await fetch("/login", {
+                method: "POST",
+                body: formData,
+              });
+          
+              const result = await response.json();
+          
+              if (result.status === "success") {
+                // Store the user's first name in sessionStorage
+                sessionStorage.setItem("firstName", result.firstName);
+          
+                // Redirect to the provided URL (e.g., index.html)
+                window.location.href = result.redirectUrl || "index.html";
+              } else {
+                // Display error message for failed login
+                alert(result.message || "Login failed. Please try again.");
+              }
+            } catch (error) {
+              console.error("Error logging in:", error);
+              alert("An unexpected error occurred. Please try again.");
+            }
+          });
+        </script>
+  
 
         <!-- Sign-up Form -->
         <form method="post" action="/signup" class="sign-up-form" name="signup">

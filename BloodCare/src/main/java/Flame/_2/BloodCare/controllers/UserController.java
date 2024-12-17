@@ -1,10 +1,13 @@
 package Flame._2.BloodCare.controllers;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import Flame._2.BloodCare.entity.User;
@@ -23,23 +26,30 @@ public class UserController {
         return new RedirectView("/login.html");
     }
 
-    @PostMapping("/login")
-    public RedirectView login(@RequestParam("email") String email,
-                              @RequestParam("password") String password,
-                              HttpSession session) {
-        User user = userRepository.findByEmail(email);
-        if (user != null && user.getPassword().equals(PasswordHashUtil.hashPassword(password))) {
-            session.setAttribute("user", user);
-            return new RedirectView("/index.html");
-        } else {
-            return new RedirectView("/login.html?error=true");
-        }
+@PostMapping("/login")
+@ResponseBody
+public Map<String, String> login(@RequestParam("email") String email,
+                                 @RequestParam("password") String password,
+                                 HttpSession session) {
+    User user = userRepository.findByEmail(email);
+    Map<String, String> response = new HashMap<>();
+    if (user != null && user.getPassword().equals(PasswordHashUtil.hashPassword(password))) {
+        session.setAttribute("user", user);
+        response.put("status", "success");
+        response.put("firstName", user.getFirstName());
+        response.put("redirectUrl", "/index.html");
+    } else {
+        response.put("status", "error");
+        response.put("message", "Invalid email or password");
     }
+    return response;
+}
+
 
     @GetMapping("/logout")
     public RedirectView logout(HttpSession session) {
         session.invalidate();
-        return new RedirectView("/login.html");
+        return new RedirectView("/index.html");
     }
 
     @PostMapping("/signup")
@@ -69,4 +79,52 @@ public class UserController {
         }
         return new RedirectView("/userDashboard.html");
     }
+
+   // Get User Profile
+   @GetMapping("/profile")
+   @ResponseBody
+   public Map<String, Object> getUserProfile(HttpSession session) {
+       User user = (User) session.getAttribute("user");
+       Map<String, Object> response = new HashMap<>();
+       if (user != null) {
+           response.put("status", "success");
+           response.put("data", user);
+           System.out.println("hello");
+       } else {
+           response.put("status", "error");
+           response.put("message", "User not logged in.");
+       }
+       return response;
+   }
+
+   // Update User Profile
+   @PostMapping("/update")
+   @ResponseBody
+   public Map<String, String> updateUserProfile(@RequestParam Map<String, String> userDetails, HttpSession session) {
+       User user = (User) session.getAttribute("user");
+       Map<String, String> response = new HashMap<>();
+
+       if (user != null) {
+           // Update user attributes
+           user.setFirstName(userDetails.get("firstName"));
+           user.setLastName(userDetails.get("lastName"));
+           user.setEmail(userDetails.get("email"));
+
+           // Password should be hashed before saving
+           String newPassword = userDetails.get("password");
+           if (!newPassword.isEmpty()) {
+               user.setPassword(PasswordHashUtil.hashPassword(newPassword));
+           }
+
+           userRepository.save(user);
+
+           response.put("status", "success");
+           response.put("message", "Profile updated successfully.");
+       } else {
+           response.put("status", "error");
+           response.put("message", "User not logged in.");
+       }
+
+       return response;
+   }
 }

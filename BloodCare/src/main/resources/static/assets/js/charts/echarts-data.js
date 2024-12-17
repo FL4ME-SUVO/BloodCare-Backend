@@ -189,10 +189,10 @@ $(function() {
 
                 
         var weatherIcons = {
-            // 'young_age': '././assets/img/weather/young_age.png',
-            // 'more_young': '././assets/img/weather/more_young.png',
-            // 'age_55': '././assets/img/weather/age_55.png',
-            // 'old': '././assets/img/weather/old.png',
+            'young_age': '././assets/img/weather/young_age.png',
+            'more_young': '././assets/img/weather/more_young.png',
+            'age_55': '././assets/img/weather/age_55.png',
+            'old': '././assets/img/weather/old.png',
         };
 
         var seriesLabel = {
