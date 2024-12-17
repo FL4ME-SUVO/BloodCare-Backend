@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
 import Flame._2.BloodCare.entity.Receiver;
+import Flame._2.BloodCare.entity.User;
 import Flame._2.BloodCare.repository.ReceiverRepository;
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class ReceiverController {
@@ -36,8 +39,13 @@ public class ReceiverController {
             @RequestParam("receivingDate") String receivingDate,
             @RequestParam("desiredBloodType") String desiredBloodType,
             @RequestParam("quantity") Integer quantity,
-            @RequestParam("reason") String reason
+            @RequestParam("reason") String reason,HttpSession session
     ) {
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return new RedirectView("/login.html");
+        }
         // Create a new Receiver object and set its properties
         Receiver receiver = new Receiver();
         receiver.setFirstName(firstName);
@@ -60,11 +68,13 @@ public class ReceiverController {
         receiver.setDesiredBloodType(desiredBloodType);
         receiver.setQuantity(quantity);
         receiver.setReason(reason);
+        receiver.setUser(user);
 
         // Save the receiver to the database
         receiverRepository.save(receiver);
 
         // Redirect to a confirmation or index page after successful registration
-        return new RedirectView("/index");
+        return new RedirectView("/index.html");
+
     }
 }
