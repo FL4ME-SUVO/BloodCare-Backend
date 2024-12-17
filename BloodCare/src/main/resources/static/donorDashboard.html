@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Dashboard</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Donor Dashboard</h2>
+
+        <!-- Section for All Donor Requests -->
+        <div class="mt-4">
+            <h3>All Donor Requests</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Appointment Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="donorRequestsTable">
+                    <!-- Data will be dynamically inserted -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section for Approved Donors -->
+        <div class="mt-4">
+            <h3>Approved Donor Requests</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Blood Group</th>
+                        <th>City</th>
+                        <th>Approval Date</th>
+                    </tr>
+                </thead>
+                <tbody id="approvedDonorsTable">
+                    <!-- Data will be dynamically inserted -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const donorRequestsTable = document.getElementById("donorRequestsTable");
+            const approvedDonorsTable = document.getElementById("approvedDonorsTable");
+    
+            // Fetch all donor requests
+            fetch("/user/donor-requests")
+                .then(response => response.json())
+                .then(data => {
+                    donorRequestsTable.innerHTML = ""; // Clear table
+                    data.forEach(request => {
+                        const row = `
+                            <tr>
+                                <td>${request.id}</td>
+                                <td>${request.firstName}</td>
+                                <td>${request.lastName}</td>
+                                <td>
+                                    <input type="date" value="${request.appointmentDate}" onchange="updateAppointment(${request.id}, this.value)">
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="updateAppointment(${request.id}, document.querySelector('input[type="date"]').value)">Update</button>
+                                </td>
+                            </tr>`;
+                        donorRequestsTable.innerHTML += row;
+                    });
+                });
+    
+            // Fetch approved donor requests
+            fetch("/user/approved-donors")
+                .then(response => response.json())
+                .then(data => {
+                    approvedDonorsTable.innerHTML = ""; // Clear table
+                    data.forEach(donor => {
+                        const row = `
+                            <tr>
+                                <td>${donor.id}</td>
+                                <td>${donor.firstName}</td>
+                                <td>${donor.lastName}</td>
+                                <td>${donor.bloodGroup}</td>
+                                <td>${donor.city}</td>
+                                <td>${donor.approvalDate}</td>
+                            </tr>`;
+                        approvedDonorsTable.innerHTML += row;
+                    });
+                });
+        });
+    
+        function updateAppointment(id, date) {
+            fetch(`/user/update-appointment/${id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `appointmentDate=${encodeURIComponent(date)}`
+            })
+                .then(response => response.text())
+                .then(message => alert(message))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>

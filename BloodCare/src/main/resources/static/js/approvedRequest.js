@@ -34,22 +34,18 @@ document.getElementById('sort').addEventListener('click', () => {
     // Fetch data from the API
     fetch(apiUrl)
         .then(response => {
-            // Check if the response is OK (status in the range 200-299)
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`); // Corrected the template literal syntax
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-            return response.json(); // Parse JSON data from the response
+            return response.json();
         })
         .then(data => {
             const tableBody = document.getElementById('approvedRequestsTable');
-    
-            // Check if the data array is empty
             if (data.length === 0) {
                 tableBody.innerHTML = '<tr><td colspan="5">No data available.</td></tr>';
                 return;
             }
-    
-            // Populate table with data
+
             tableBody.innerHTML = data.map(item => `
                 <tr>
                     <td>${item.firstName} ${item.lastName}</td>

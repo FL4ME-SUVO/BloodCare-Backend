@@ -1,16 +1,22 @@
 package Flame._2.BloodCare.controllers;
 
+import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import Flame._2.BloodCare.entity.ApprovedDonor;
 import Flame._2.BloodCare.entity.Donor;
 import Flame._2.BloodCare.entity.RejectedDonor;
 import Flame._2.BloodCare.repository.ApprovedDonorRepository;
 import Flame._2.BloodCare.repository.DonorRepository;
 import Flame._2.BloodCare.repository.RejectedDonorRepository;
-import java.time.LocalDateTime;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/admin")
@@ -58,6 +64,7 @@ public class ApprovedDonorController {
         approvedDonor.setDisease(donor.getDisease());
         approvedDonor.setDonateThroughCamp(donor.getDonateThroughCamp());
         approvedDonor.setApprovalDate(LocalDateTime.now());
+        approvedDonor.setUser(donor.getUser());
 
         approvedDonorRepository.save(approvedDonor);
         donorRepository.deleteById(id);
@@ -92,6 +99,7 @@ public class ApprovedDonorController {
         rejectedDonor.setDisease(donor.getDisease());
         rejectedDonor.setDonateThroughCamp(donor.getDonateThroughCamp());
         rejectedDonor.setRejectionDate(LocalDateTime.now());
+        rejectedDonor.setUser(donor.getUser());
 
         rejectedDonorRepository.save(rejectedDonor);
         donorRepository.deleteById(id);
@@ -105,6 +113,9 @@ public class ApprovedDonorController {
         return approvedDonorRepository.findAll();
     }
 
+
+
+
     
     // Get all rejected donor requests
     @GetMapping("/rejected-donors")
@@ -113,4 +124,8 @@ public class ApprovedDonorController {
     }
 
 
+
+
 }
+
+

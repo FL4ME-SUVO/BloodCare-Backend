@@ -1,16 +1,22 @@
 package Flame._2.BloodCare.controllers;
 
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import Flame._2.BloodCare.entity.ApprovedReceiver;
 import Flame._2.BloodCare.entity.Receiver;
 import Flame._2.BloodCare.entity.RejectedReceiver;
 import Flame._2.BloodCare.repository.ApprovedReceiverRepository;
 import Flame._2.BloodCare.repository.ReceiverRepository;
 import Flame._2.BloodCare.repository.RejectedReceiverRepository;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -59,6 +65,7 @@ public class ApprovedReceiverController {
         approvedReceiver.setQuantity(receiver.getQuantity());
         approvedReceiver.setReason(receiver.getReason());
         approvedReceiver.setApprovalDate(LocalDateTime.now());
+        approvedReceiver.setUser(receiver.getUser());
 
         approvedReceiverRepository.save(approvedReceiver);
         receiverRepository.deleteById(id);
@@ -94,6 +101,7 @@ public class ApprovedReceiverController {
         rejectedReceiver.setQuantity(receiver.getQuantity());
         rejectedReceiver.setReason(receiver.getReason());
         rejectedReceiver.setRejectionDate(LocalDateTime.now());
+        rejectedReceiver.setUser(receiver.getUser());
 
         rejectedReceiverRepository.save(rejectedReceiver);
         receiverRepository.deleteById(id);

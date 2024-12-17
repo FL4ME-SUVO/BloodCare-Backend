@@ -30,7 +30,7 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="icon" href="blood2.ico" type="image/x-icon">   
+    <link rel="icon" href="blood2.ico" type="image/x-icon">
 
 </head>
 
@@ -63,14 +63,10 @@
                         <div class="dropdown-menu m-0">
                             <a href="user.html" class="dropdown-item">User Dashboard</a>
                             <a href="adminLogin.html" class="dropdown-item">Admin Login</a>
-                            <a href="#" class="dropdown-item">Edit Profile</a>
-                            <a href="#" class="dropdown-item">Check Status</a>
-                            <a href="#" class="dropdown-item">Total Donate</a>
-                            <a href="#" class="dropdown-item">Total Receive</a>
-                            <a href="#" class="dropdown-item">Delete Account</a>
                             <a href="404.html" class="dropdown-item">404 Page</a>
                             <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <!-- Log Out Link -->
+                            <a href="#" onclick="logout();" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                     <a href="index.html" class="nav-item nav-link">Home</a>
@@ -79,11 +75,52 @@
                     <a href="ReceiverRegistration.html" class="nav-item nav-link">Receive Blood</a>
                     <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                 </div>
+
+            </div>
+            <!-- Placeholder for Login/Signup buttons or user's name -->
+            <div id="auth-links">
                 <a href="login.html"
-                    class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4 ">
-                    Log In
-                </a>
+                    class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4 ">Log In</a>
                 <a href="login.html" class="btn btn-primary rounded-pill text-white py-2 px-4">Sign Up</a>
+            </div>
+
+
+            <div id="user-greeting" style="display: none;">
+                <div class="welcome-container" id="user-name"></div>
+            </div>
+            <style>
+                .welcome-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 20px;
+                    margin: 10px 0;
+                    border: 2px solid #ff0000;
+                    /* Optional: Change the border color */
+                    border-radius: 10px;
+                    background-color: #f8f9fa;
+                    /* Light background color */
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                    /* Optional: Apply shadow for depth */
+                }
+
+                .welcome-container h2 {
+                    margin: 0;
+                    /* Remove default h2 margin */
+                }
+
+                .welcome-text {
+                    color: red;
+                    /* Color for the "Welcome" text */
+                    font-weight: bold;
+                    /* Bold font for emphasis */
+                    margin-right: 5px;
+                    /* Space between "Welcome" and the name */
+                }
+            </style>
+            <!-- Placeholder for user's first name (if logged in) -->
+            <div id="user-greeting" style="display:none;">
+                <span id="user-name"></span>
             </div>
         </nav>
     </div>
@@ -486,7 +523,39 @@
         </div>
     </div>
     <!-- Copyright End -->
+    <script>
+        // Check user login status and update the navbar
+        window.onload = function () {
+            const firstName = sessionStorage.getItem("firstName");
 
+            if (firstName) {
+                // Hide the login/signup links
+                document.getElementById("auth-links").style.display = "none";
+
+                // Show the user's name
+                document.getElementById("user-greeting").style.display = "flex";
+                document.getElementById("user-name").textContent = `Welcome, ${firstName}!`;
+            } else {
+                // Show the login/signup links
+                document.getElementById("auth-links").style.display = "flex";
+
+                // Hide the user's name
+                document.getElementById("user-greeting").style.display = "none";
+            }
+        };
+
+
+        // Logout function to clear sessionStorage and redirect to homepage
+        // Logout function to clear session storage and redirect
+        function logout() {
+            // Clear session storage
+            sessionStorage.clear();
+
+            // Redirect to backend logout to clear server-side session
+            window.location.href = "/logout";
+        }
+
+    </script>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>

@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class RejectedReceiver {
@@ -16,6 +18,16 @@ public class RejectedReceiver {
     private String firstName,middleName,lastName,email,mobile,alternativeMobile,dob,aadhaar,gender,bloodGroup,city,district,state,receivingDate,desiredBloodType,reason;
     private Integer age,weight,pinCode,quantity; // Store receiver details as a JSON string or separate fields.
     private LocalDateTime rejectionDate;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     // Getters and Setters
 
